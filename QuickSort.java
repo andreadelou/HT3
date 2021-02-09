@@ -16,6 +16,7 @@ public class QuickSort {
     Random r = new Random();
 
     int[] vector;
+    int nc=0; int ni=0;
 
     public void QuickSort()
     {
@@ -29,26 +30,6 @@ public class QuickSort {
 
     private void ordenar()
     {
-        /*
-         nc = 0; ni = 0;
-            v2 = new int[n];
-
-            for (int x = 0; x < n; x++)
-            {
-                v2[x] = v1[x];
-            }
-            ti = DateTime.Now;
-            QS(v2,n);
-            tf = DateTime.Now;
-
-            for (int i = 0; i < n; i++)
-            {
-                textBox7.Text += v2[i] + Environment.NewLine;
-            }
-            textBox5.Text = "Comparaciones: " + nc.ToString() + Environment.NewLine +
-              "Intercambios: " + ni.ToString() + Environment.NewLine + "Tiempo que tardo:" + (tf - ti).ToString();
-         */
-        int nc=0; int ni=0;
         int[] v2=new int[3000];
 
         for (int x = 0; x < 3000; x++)
@@ -57,12 +38,56 @@ public class QuickSort {
         }
 
         //para ver cuanto tiempo "actual" le tomo ordenar
-        LocalDateTime myDateObj = LocalDateTime.now();
-        System.out.println("Before formatting: " + myDateObj);
+        LocalDateTime tiempo = LocalDateTime.now();
+        LocalDateTime tiempot = tiempo;
+        System.out.println("Tiempo inicial: " + tiempo);
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
-        String formattedDate = myDateObj.format(myFormatObj);
-        System.out.println("After formatting: " + formattedDate);
+        QS(v2,3000);
+
+        String formattedDate = tiempo.format(myFormatObj);
+        System.out.println("Tiempo final: " + formattedDate);
+        //System.out.println("Tiempo total: " + (tiempo-tiempot) );
+
+        for (int i = 0; i < 3000; i++)
+        {
+            System.out.println( v2[i]);
+        }
+    }
+
+    public void QS(int[] L, int t)
+    {
+        if (t > 1)
+        {
+
+            int[] l1 = new int[t - 1];
+            int[] l2 = new int[t - 1];
+            int i, t1, t2;
+            int e;
+            e = L[0];
+            t1 = 0; t2 = 0;
+            for (i = 1; i < t; i++)
+            {
+                if (L[i] < e)
+                {
+                    l1[t1++] = L[i];
+                    ni++;
+                }
+
+                else
+                {
+                    l2[t2++] = L[i];
+                    ni++;
+                }
+
+            }
+            QS(l1, t1);
+            QS(l2, t2);
+            for (i = 0; i < t1; i++) L[i] = l1[i];
+            L[t1] = e;
+            for (i = 0; i < t2; i++) L[t1 + 1 + i] = l2[i];
+            nc++;
+        }
 
     }
 

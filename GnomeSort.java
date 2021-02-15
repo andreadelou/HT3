@@ -1,4 +1,4 @@
-public class gnomesort {
+public class GnomeSort {
 
     public static void GnomeSort(Comparable[] list){
 
@@ -16,6 +16,11 @@ public class gnomesort {
                 x = y;
                 y++;
             }
+        }
+
+        for (int i=0; i< list.length; i++)
+        {
+            System.out.println(list[i]);
         }
     }
 }

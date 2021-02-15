@@ -1,53 +1,29 @@
 /*
-Andrea Lam, 20102
+Sort de QuickSort
 Fecha de creación: 6/02/21
 Modificación 1: 8/02/21
 
-Referencias:
-https://www.w3schools.com/java/java_date.asp
  */
 
 import java.util.Random;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class QuickSort {
 
     Random r = new Random();
 
-    int[] vector;
+    int[] v2;
     int nc=0; int ni=0;
 
-    public void QuickSort()
+    public void ordenar()
     {
-        //ingresar los números random en el vector
-        vector = new int[3000];
-        for (int i=0; i<3000; i++)
-        {
-            vector[i]=r.nextInt(3000);
-        }
-    }
-
-    private void ordenar()
-    {
-        int[] v2=new int[3000];
+        v2=new int[3000];
 
         for (int x = 0; x < 3000; x++)
         {
-            v2[x]=vector[x];
+            v2[x]=r.nextInt(3000);
         }
 
-        //para ver cuanto tiempo "actual" le tomo ordenar
-        LocalDateTime tiempo = LocalDateTime.now();
-        LocalDateTime tiempot = tiempo;
-        System.out.println("Tiempo inicial: " + tiempo);
-        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-
         QS(v2,3000);
-
-        String formattedDate = tiempo.format(myFormatObj);
-        System.out.println("Tiempo final: " + formattedDate);
-        //System.out.println("Tiempo total: " + (tiempo-tiempot) );
 
         for (int i = 0; i < 3000; i++)
         {
@@ -55,7 +31,7 @@ public class QuickSort {
         }
     }
 
-    public void QS(int[] L, int t)
+    private void QS(int[] L, int t)
     {
         if (t > 1)
         {
